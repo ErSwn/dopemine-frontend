@@ -19,6 +19,8 @@ export function getCookie(name) {
   return decodeURIComponent(xsrfCookies[0].split('=')[1]);
 }
 
+axios.defaults.headers['X-CSRFToken'] = getCookie('csrftoken')
+
 class API {
   constructor(props){
     this.token = '';
@@ -26,7 +28,7 @@ class API {
     this.media_URL = this.baseURL;
     this.csrfToken = getCookie('csrftoken');
     this.verifiedCSRF = false;
-
+  
     this.instance = axios.create({
       baseURL: this.baseURL,
       timeout: 5000,
@@ -64,12 +66,25 @@ class API {
 
     }
   async __get__(url, parameters){
-    // parameters['csrfmiddlewaretoken'] = 
-    return await this.instance.get(url, parameters);
+    parameters['csrfmiddlewaretoken'] = this.csrfToken;
+    return await  fetch(
+      API_URL+'/actions/like/',
+      {
+        credentials:'include',
+        method:'POST',
+        headers:JSON.stringify({ 'X-CSRFToken':getCookie('csrftoken') }),
+        body:JSON.stringify(parameters)
+      })
   }
   async __post__(url, parameters){
+    parameters['csrfmiddlewaretoken'] = this.csrfToken;
 
-    return await this.instance.post(url, parameters);
+    return await fetch(API_URL+'/actions/like/',
+        {
+          credentials:'include',
+          method:'POST',
+          headers:{ 'X-CSRFToken':getCookie('csrftoken') },
+          body:JSON.stringify(parameters)})
   }
 
   async get(url, parameters){

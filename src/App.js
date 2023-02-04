@@ -12,8 +12,7 @@ import {API_URL, getCookie} from './components/backend.js';
 
 const API_conection = new API();
 var user = '123'
-axios.defaults.xsrfCookieName = "csrftoken";
-axios.defaults.xsrfHeaderName = "X-CSRFToken";
+
 function makeId(){
   let ID = "";
   let characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -123,9 +122,9 @@ class CommentSection extends React.Component {
             </div>
             <div className='comment-section'>
               <InfiniteScroll
-                dataLength={this.state.comments.length}
-                hasMore={this.state.hasMore}
-                // loader={<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>}
+               dataLength={this.state.comments.length}
+               hasMore={this.state.hasMore}
+               loader={this.state.hasMore?<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>:<div>asd</div>}
                >
                {this.state.comments.map((comment) => (
                 <div className="comments-container">
@@ -172,13 +171,27 @@ class Publication extends React.Component {
   async handleLikeClick() {
     // updates like state
     var like_state = !this.state.liked;
-    axios.post(API_URL +'/actions/like/',
-     {body:{ id: this.props.post.id, value:like_state}},
-      {headers:{'X-CSRFTOKEN':getCookie('csrftoken')}}
-      )
-// 
-//     API_conection.post('/actions/like/', 
-//       {body:{ id: this.props.post.id, value:like_state}})
+    API_conection.post('/actions/like/', 
+      {body:{ id: this.props.post.id, value:like_state}})
+
+
+// const request = new Request(
+//     API_URL+'/actions/like/',
+//     {
+//         method: 'POST',
+//         headers: {'X-CSRFToken': getCookie('csrftoken')
+//         },
+//         mode: 'same-origin', // Do not send CSRF token to another domain.
+//         body:{
+//           id: this.props.post.id,
+//           value:like_state,
+//           csrfmiddlewaretoken: getCookie('csrftoken')
+//         }
+//     }
+// );
+// fetch(request).then(function(response) {
+    // ...
+// });
 
     this.setState({ liked:like_state });
 
@@ -253,21 +266,21 @@ class Publication extends React.Component {
         </div>
       </div>
     )}
-    }
+}
 
 class App extends React.Component {
-  constructor() {
-      super()
-      this.state = {
-       items: [],
-       hasMore: true,
-       following: [],
-       pagination_counter:0
-     }
-   }
+ constructor() {
+  super()
+  this.state = {
+   items: [],
+   hasMore: true,
+   following: [],
+   pagination_counter:0
+ }
+}
 
 
-   update_paginations = () =>{
+  update_paginations = () =>{
     this.setState({pagination_counter: this.state.pagination_counter + 1 })
   }
 
@@ -294,8 +307,8 @@ class App extends React.Component {
           this.update_paginations()
           this.setState({ items: [...this.state.items, ...newItems] })
         }
-      }
-      );
+    }
+        );
 
     } catch (e) {
       console.log(e);
