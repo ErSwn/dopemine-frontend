@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 .App {
   text-align: center;
 }
@@ -12,7 +13,6 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
-
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -34,5 +34,421 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+#publications{
+  width: 100%;
+}
+.publications-container{
+  width:100%;
+  display:inline-block;
+}
+.post{
+  width:90%;
+  height: 100%;
+  max-width: 490px;
+  background-color: white;
+  display: inline-block;
+  border-radius: 0.5%;
+  border: 2px solid #B1B1B178;
+  align-items: stretch;
+  box-sizing:border-box;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  flex-shrink: 0;
+  font: inherit;
+  font-size: 100%;
+  margin: 5px auto;
+  padding: 0;
+  position: relative;
+  vertical-align: baseline;
+  width: 100%;
+}
+
+.publication-header{
+  display: table;
+  clear: both;
+  padding-top: 5px;
+  background-color: transparent;
+  height: fit-content;
+}
+.user-profile-photo{
+  aspect-ratio: 1 / 1;
+  float: left;
+  margin: 4px;
+  margin-top: 6px;
+  width:9.5%;
+  background-color:transparent;
+}
+.user-profile-photo >img{
+    width:  100%;
+    height: 100%;
+    border-radius: 50%; 
+    object-fit: cover;
+}
+.user-name{
+  /*padding-top: 2.4mm;*/
+  
+  font: 600 18px/24px Google Sans,-apple-system,BlinkMacSystemFont,sans-serif;
+font-size: 15px;
+}
+.user-username{
+  padding-left: 6px;
+  padding-right: 5px;
+  font-size: 14px;
+  color: rgba(138 ,138, 138);
+}
+
+.publication-content-container{
+  float: left;
+  width: 83%;
+  padding-left: 2px;
+}
+.publication-content{
+  float: left;
+  background-color: white;
+  width:100%;
+  min-height: 10px;
+  color: black;
+}
+.publication-label{
+  margin: 0;
+  font-size: 15px;
+  width: 100%;
+  font-family: "Roboto";
+  padding-bottom: 5px;
+}
+.publication-foot{
+  width: 100%;
+  float: left;
+  /*padding-top: 1px;*/
+}
+.like-button{
+  transform: scale(0.5, 0.5);
+  float: left;
+  width:40px;
+  height: 40px;
+  margin-left : 8%;
+  opacity: 0.65;
+}
+.like-button:hover{
+  transform: scale(0.55, 0.55);
+}
+.likeCounter{
+  padding-right: 4px;
+  float: left;
+  padding-top: 8px;
+  background-color: white;
+  color: rgb(120, 120,120);
+  font: 400 14px/24px Google Sans,-apple-system,BlinkMacSystemFont,sans-serif;
+
+}
+/* fallback */
+@font-face {
+  font-family: 'Material Symbols Rounded';
+  font-style: normal;
+  font-weight: 100 700;
+  src: url(https://fonts.gstatic.com/s/materialsymbolsrounded/v75/sykg-zNym6YjUruM-QrEh7-nyTnjDwKNJ_190Fjzag.woff2) format('woff2');
+}
+
+.material-symbols-rounded {
+  color: black;
+/*  height: 30px;
+  width: 30px;*/
+  font-family: 'Material Symbols Rounded';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}
+
+.material-symbols-rounded  {
+  float: left;
+  margin-top: 9px;
+  margin-left: 20px;
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 250,
+  'GRAD' -100,
+  'opsz' 40
+}
+.material-symbols-rounded:hover  {
+  transform: scale(1.1, 1.1);
+  cursor: pointer;
+    font-variation-settings:
+  'FILL' 0,
+  'wght' 250,
+  'GRAD' 100,
+  'opsz' 40
+}
+
+.publication-image-profile-photo{
+ aspect-ratio:1/1;
+ width:100%;
+ border-radius:50%;
+ background-color:transparent;
+}
+.comment-counter{
+  float: left;
+  margin-top: 9px;
+  margin-left: 10px;
+  color: rgb(120, 120,120);
+
+  font: 400 17px/24px Google Sans,-apple-system,BlinkMacSystemFont,sans-serif;
+
+}
+
+
+.date{
+  float: right;
+  padding-top: 18px;
+  background-color: white;
+  color: rgb(150, 150,150);
+  font-size: 15px;
+  margin-right: 10px;
+}
+.publication-comments{
+  width:100%;
+  float: left;
+  min-height: 100px;
+/*  border: 2px solid #B1B1B178;*/
+  font: 400 18px/24px Google Sans,-apple-system,BlinkMacSystemFont,sans-serif;
+
+}
+
+.comment{
+  padding-left: 10px;
+  border-bottom: 1px solid #B1B1B178;
+  padding-bottom: 10px;
+  display: inline-block;
+  width:100%;
+}
+
+.comment-header{
+  float:left;
+  margin-left: 0;
+}
+.comment-photo-container{
+  /*height: 100%;*/
+  /*width:12%;*/
+  max-width: 40px;
+
+}
+.comment-profile-photo{
+  aspect-ratio:1/1;
+  width:100%;
+  float: left;
+  border-radius: 50%;
+
+}
+
+.comment-name{
+  float: left;
+  height:100%;
+/*  padding:5px;*/
+  font-size: 14px;
+  font: 600 15px/24px Google Sans,-apple-system,BlinkMacSystemFont,sans-serif;
+
+}
+.comment-username{
+  float: left;
+  height:100%;
+/*  padding-left: 1px;
+  padding-top: 7px;*/
+  font-size: 12px;
+  padding-left: 3px;
+  color: rgba(138 ,138, 138);
+
+}
+.comment-title{
+  float: left;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  font-size:16px;
+  color: rgba(99, 99, 99);
+}
+.comment-content{
+  float: left;
+  width:87%;
+  font-size: 15px;
+  padding-left: 10px;
+  font-family: "Roboto";
+
+}
+.comment-label{
+  width: 100%;
+  float: left;
+  padding-bottom: 10px;
+  font-size:16px;
+  color: rgba(99, 99, 99);
+  font: 400 16px/24px Google Sans,-apple-system,BlinkMacSystemFont,sans-serif;
+}
+
+.comments-container{
+  width: 100%;
+  overflow: hidden;
+}
+.comment-foot{
+  float: left;
+  height:100%;
+}
+.comment-input-container{
+  padding-left:060px;
+}
+.comment-form-photo{
+  margin-left: 10px;
+  margin-top: 4px;
+}
+.comment-input{
+  width: 90%;
+  min-height: 30px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-size: 15px;
+  padding: 7px;
+  overflow: hidden;
+  resize: vertical;
+  border-radius:8px;
+  font-family: arial;
+  color: rgb(42, 42, 42);
+  border-color: rgba(150, 150, 200, 0.5);
+box-sizing: border-box;
+}
+.comment-input:focus{
+  border-color: rgba(150, 150, 200, 0.5);
+  outline: none;
+}
+.comment-form-photo{
+  background-color: red;
+  height:40px;
+  width:40px;
+  border-radius: 50%;
+  float: left;
+}
+.comment-form{
+  float: left;
+  width:100%
+}
+.publication-image{
+    width:  100%;
+    height: auto;
+    object-fit: cover;
+}
+.comment-submit-button{
+  height: 50px;
+  width: 30px;
+}
+
+.comment-section{
+  float:left;
+  width:100%;
+}
+
+.comment-load-more{
+  width: 100px;
+  margin: 0 auto;
+  display: inline-block;
+  border-radius: 1%;
+  align-items: stretch;
+  box-sizing:border-box;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  flex-shrink: 0;
+  font: inherit;
+  font-size: 16px;
+  margin: 10px auto;
+  padding: 0;
+  color: rgb(100,100,100);
+  cursor: pointer;
+}
+
+
+/*loader*/
+
+:root {
+  --main-bg-color: black;
+}
+
+.lds-ellipsis {
+  width: 70px;
+  height: 70px;
+  margin: 0 auto;
+  transform:scale(0.6, 0.6);
+  display: inline-block;
+  border-radius: 1%;
+  align-items: stretch;
+  box-sizing:border-box;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  flex-shrink: 0;
+  font: inherit;
+  font-size: 100%;
+  margin: 10px auto;
+  padding: 0;
+
+}
+.lds-ellipsis div {
+  background-color: var(--main-bg-color);
+  position: absolute;
+  top: 33px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #fff;
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+.lds-ellipsis div:nth-child(1) {
+  background-color: var(--main-bg-color);
+  left: 8px;
+  animation: lds-ellipsis1 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(2) {
+  background-color: var(--main-bg-color);
+  left: 8px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(3) {
+  background-color: var(--main-bg-color);
+  left: 32px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(4) {
+  background-color: var(--main-bg-color);
+  left: 56px;
+  animation: lds-ellipsis3 0.6s infinite;
+}
+@keyframes lds-ellipsis1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes lds-ellipsis3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes lds-ellipsis2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(24px, 0);
   }
 }
