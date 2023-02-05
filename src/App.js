@@ -88,6 +88,7 @@ class CommentSection extends React.Component {
       .then(data => {
         if (data.lenght === 0){
           this.setState({ hasMore: false })
+          console.log(this.state.hasMore)
         } else {
           this.update_paginations();
           this.setState({ comments: [...this.state.comments, ...data] })
@@ -99,7 +100,8 @@ class CommentSection extends React.Component {
   }
 
   async uploadComment() {
-    const content = document.getElementById(this.state.id).value
+    const content = document.getElementById(this.state.id).innerHTML;
+    console.log(content)
     API_conection.post(
       "/actions/comment/", 
       {data:{
@@ -116,7 +118,9 @@ class CommentSection extends React.Component {
 
               </div>
               <div className='comment-input-container'>
-                <textarea elastic id={this.state.id} type="text" className="comment-input"/>
+
+                <p><span id={this.state.id} class="textarea" role="textbox" contenteditable="true">asda</span></p>
+                {/* <textarea elastic id={this.state.id} type="text" className="comment-input"/> */}
                 <button  className='comment-submit-button' onClick={() => this.uploadComment() }></button>
               </div>
             </div>
@@ -124,7 +128,8 @@ class CommentSection extends React.Component {
               <InfiniteScroll
                dataLength={this.state.comments.length}
                hasMore={this.state.hasMore}
-               loader={this.state.hasMore?<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>:<div>asd</div>}
+               // loader={this.state.hasMore?<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>:<div>asd</div>}
+
                >
                {this.state.comments.map((comment) => (
                 <div className="comments-container">
@@ -132,11 +137,14 @@ class CommentSection extends React.Component {
                 </div>
                ))}
             </InfiniteScroll>
-            <span id={this.state.load_more_id} onClick={() => this.fetchData()} className='comment-load-more'>Cargar más...</span>
+            <span id={this.state.load_more_id} onClick={() => this.fetchData()} className='comment-load-more'>{this.state.hasMore?<p>Cargar más...</p>:<p></p>}</span>
           </div>
         </div>
     }
   }
+const footColor = '#b7afaf'
+
+
 class Publication extends React.Component {
    constructor() {
     super()
@@ -223,17 +231,17 @@ class Publication extends React.Component {
           </Carousel>
         </div>
       }
-        <div className='publication-foot'>
+        <div className='publication-foot prevent-select'>
           <span className='like-button'>
-            <Heart isActive={this.state.liked} onClick={() => this.handleLikeClick() }/>
+            <Heart inactiveColor={footColor}  isActive={this.state.liked} onClick={() => this.handleLikeClick() }/>
           </span>
-          <span className="likeCounter">
+          <span  className="likeCounter">
               {this.state.like_count}
           </span>
           <span onClick={()=> this.displayComments() } className="material-symbols-rounded comment-icon">
           mode_comment
           </span>
-          <span className="comment-counter">
+          <span  className="comment-counter">
             {this.props.post.comment_count}
           </span>
           <span className='date'>

@@ -22,7 +22,6 @@ class API {
     this.media_URL = this.baseURL;
     this.csrfToken = getCookie('csrftoken');
     this.verifiedCSRF = false;
-
   }
 
   async gettoken ()  {
@@ -49,9 +48,11 @@ class API {
 
     }
     async __get__(url, parameters){
+      // parameters['csrfmiddlewaretoken'] = this.csrfToken;
       return await axios.get(API_URL+url, parameters)
     }
     async __post__(url, parameters){
+      // parameters['csrfmiddlewaretoken'] = this.csrfToken;
       return await fetch(API_URL+url,
         {
           credentials:'include',

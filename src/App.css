@@ -42,15 +42,17 @@
 .publications-container{
   width:100%;
   display:inline-block;
+  /*border: 2px solid #B1B1B178;*/
+
 }
 .post{
   width:90%;
   height: 100%;
-  max-width: 490px;
+  max-width: 500px;
   background-color: white;
   display: inline-block;
   border-radius: 0.5%;
-  border: 2px solid #B1B1B178;
+  border: 2px solid #cccaca78;
   align-items: stretch;
   box-sizing:border-box;
   display: flex;
@@ -59,7 +61,7 @@
   flex-shrink: 0;
   font: inherit;
   font-size: 100%;
-  margin: 5px auto;
+  margin: -1px auto;
   padding: 0;
   position: relative;
   vertical-align: baseline;
@@ -140,7 +142,7 @@ font-size: 15px;
   float: left;
   padding-top: 8px;
   background-color: white;
-  color: rgb(120, 120,120);
+  color: #b7afaf;;
   font: 400 14px/24px Google Sans,-apple-system,BlinkMacSystemFont,sans-serif;
 
 }
@@ -201,9 +203,9 @@ font-size: 15px;
   float: left;
   margin-top: 9px;
   margin-left: 10px;
-  color: rgb(120, 120,120);
+  color: #b7afaf;
 
-  font: 400 17px/24px Google Sans,-apple-system,BlinkMacSystemFont,sans-serif;
+  font: 400 15px/24px Google Sans,-apple-system,BlinkMacSystemFont,sans-serif;
 
 }
 
@@ -240,8 +242,7 @@ font-size: 15px;
 .comment-photo-container{
   /*height: 100%;*/
   /*width:12%;*/
-  max-width: 40px;
-
+  max-width: 30px;
 }
 .comment-profile-photo{
   aspect-ratio:1/1;
@@ -274,7 +275,7 @@ font-size: 15px;
   padding-bottom: 10px;
   padding-left: 20px;
   font-size:16px;
-  color: rgba(99, 99, 99);
+ color:#a7a7a7;
 }
 .comment-content{
   float: left;
@@ -290,6 +291,7 @@ font-size: 15px;
   padding-bottom: 10px;
   font-size:16px;
   color: rgba(99, 99, 99);
+
   font: 400 16px/24px Google Sans,-apple-system,BlinkMacSystemFont,sans-serif;
 }
 
@@ -344,8 +346,13 @@ box-sizing: border-box;
     object-fit: cover;
 }
 .comment-submit-button{
-  height: 50px;
+  height: 15px;
   width: 30px;
+  float:right;
+  margin-top:-10px;
+  margin-right:12px;
+  background-color:red;
+
 }
 
 .comment-section{
@@ -452,3 +459,95 @@ box-sizing: border-box;
     transform: translate(24px, 0);
   }
 }
+
+.material-symbols-rounded{
+  color:#b7afaf;;
+}
+
+
+.prevent-select {
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+}
+.infinite-scroll-component::-webkit-scrollbar {
+  display: none;
+}
+.infinite-scroll-component {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+
+.input,
+.textarea {
+  border: 1px solid #ccc;
+  font-family: inherit;
+  font-size: inherit;
+  padding: 1px 6px;
+}
+
+.input-wrap {
+  position: relative;
+}
+.input-wrap .input {
+  position: absolute;
+  width: 100%;
+  left: 0;
+}
+.width-machine {
+  /*   Sort of a magic number to add extra space for number spinner */
+  padding: 0 1rem;
+}
+
+.textarea {
+  border-radius:4px;
+  display: block;
+  width: 96%;
+  overflow: hidden;
+  /*resize: both;*/
+  min-height: 40px;
+  line-height: 20px;
+}
+
+.comment-input{
+  width: 90%;
+  min-height: 30px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-size: 15px;
+  padding: 7px;
+  overflow: hidden;
+  resize: vertical;
+  border-radius:8px;
+  font-family: arial;
+  color: rgb(42, 42, 42);
+  border-color: rgba(150, 150, 200, 0.5);
+box-sizing: border-box;
+}
+.textarea:focus{
+  border-color: rgba(150, 150, 200, 0.5);
+  outline: none;
+}
+
+.textarea[contenteditable]:empty::before {
+  content: "Placeholder still possible";
+  color: gray;
+}
+
+/* Just for demo */
+* {
+  box-sizing: border-box;
+}
+
+p strong {
+  display: block;
+}
+h1 {
+  border-bottom: 5px solid #9ccc65;
+}
+h2 {
+  border-bottom: 2px solid #c5e1a5;
+}
+
+
