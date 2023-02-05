@@ -174,25 +174,6 @@ class Publication extends React.Component {
     API_conection.post('/actions/like/', 
       {body:{ id: this.props.post.id, value:like_state}})
 
-
-// const request = new Request(
-//     API_URL+'/actions/like/',
-//     {
-//         method: 'POST',
-//         headers: {'X-CSRFToken': getCookie('csrftoken')
-//         },
-//         mode: 'same-origin', // Do not send CSRF token to another domain.
-//         body:{
-//           id: this.props.post.id,
-//           value:like_state,
-//           csrfmiddlewaretoken: getCookie('csrftoken')
-//         }
-//     }
-// );
-// fetch(request).then(function(response) {
-    // ...
-// });
-
     this.setState({ liked:like_state });
 
     // updates like counter
