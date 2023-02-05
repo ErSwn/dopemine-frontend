@@ -8,7 +8,7 @@ import { Carousel } from 'react-responsive-carousel';
 import Heart from "react-heart";
 import * as React from 'react';
 import API from './components/backend.js';
-import {API_URL, getCookie} from './components/backend.js';
+import {API_URL} from './components/backend.js';
 
 const API_conection = new API();
 var user = '123'
@@ -104,10 +104,10 @@ class CommentSection extends React.Component {
     console.log(content)
     API_conection.post(
       "/actions/comment/", 
-      {data:{
+      {
         content:content,
         post_id:this.props.post_id}
-      })
+      )
   }
   render() {
       return <div className='publication-comments'>
@@ -180,7 +180,7 @@ class Publication extends React.Component {
     // updates like state
     var like_state = !this.state.liked;
     API_conection.post('/actions/like/', 
-      {body:{ id: this.props.post.id, value:like_state}})
+      { id: this.props.post.id, value:like_state})
 
     this.setState({ liked:like_state });
 
