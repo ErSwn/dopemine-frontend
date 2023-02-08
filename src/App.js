@@ -1,15 +1,21 @@
-// import React from 'react';
+import * as React from 'react';
+import {useId} from 'react';
 import axios from 'axios';
-import InfiniteScroll from 'react-infinite-scroll-component'
 import './App.css';
+import API from './components/backend.js';
+import {API_URL} from './components/backend.js';
+
+import InfiniteScroll from 'react-infinite-scroll-component'
 import "react-carousel-responsive/dist/styles.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import Heart from "react-heart";
-import * as React from 'react';
-import API from './components/backend.js';
-import {API_URL} from './components/backend.js';
 
+import { useDoubleTap } from 'use-double-tap';
+
+
+
+// import Swipe from 'swipejs';
 const API_conection = new API();
 var user = '123'
 
@@ -119,7 +125,7 @@ class CommentSection extends React.Component {
               </div>
               <div className='comment-input-container'>
 
-                <p><span id={this.state.id} class="textarea" role="textbox" contenteditable="true">asda</span></p>
+                <p><span id={this.state.id} className="textarea" role="textbox" contentEditable="true"></span></p>
                 {/* <textarea elastic id={this.state.id} type="text" className="comment-input"/> */}
                 <button  className='comment-submit-button' onClick={() => this.uploadComment() }></button>
               </div>
@@ -132,8 +138,10 @@ class CommentSection extends React.Component {
 
                >
                {this.state.comments.map((comment) => (
-                <div className="comments-container">
-                <Comment content={comment}></Comment>
+
+                <div key={comment.id} className="comments-container">
+                  <Comment content={comment}></Comment>
+                
                 </div>
                ))}
             </InfiniteScroll>
@@ -145,17 +153,53 @@ class CommentSection extends React.Component {
 const footColor = '#b7afaf'
 
 
+const GalleryRender = (gallery) =>{
+  if (Object.keys(gallery).length === 0){
+    return <div></div>
+
+  } else if (Object.keys(gallery).length > 1) {
+
+    return<div className='publication-media'>
+      <Carousel preventMovementUntilSwipeScrollTolerance={true} swipeScrollTolerance={50} className='post-Carousel' showThumbs={false} useKeyboardArrows={true}>    
+        { Object.keys(gallery).map((key_) =>{
+              return (<div className="slide">
+                <img alt ="" className="publication-image" src={API_URL +"/image/"+gallery[key_]} />
+              </div>
+              )})
+          }
+      </Carousel>
+      </div>
+
+  } else {
+
+    return<div className='publication-media'> 
+    
+    <img alt ="" className="publication-image" src={API_URL +"/image/"+gallery[Object.keys(gallery)[0]]} />
+
+    </div>
+  }
+}
+
 class Publication extends React.Component {
    constructor() {
     super()
+    this.id = makeId()
+
     this.state = {
      liked:false,
      like_count:0,
      date_of_publication:"",
      display_comments:false,
-     comment_counter:0
+     comment_counter:0,
+     bookmark:false,
+      
    }
+    
  }
+
+
+
+
   componentDidMount() {
   var dt = new Date(this.props.post.date_of_publication)
 
@@ -170,10 +214,29 @@ class Publication extends React.Component {
   this.setState({ like_count:this.props.post.like_count });
   this.setState({ liked:this.props.post.liked_by_user });
   this.setState({ date_of_publication:dt });
+  this.setState({ bookmark:this.props.post.bookmark})
+  this.updateBookmark(this.props.post.bookmark);  
 }
 
   displayComments(){
     this.setState({ display_comments:!this.state.display_comments });
+  }
+
+  updateBookmark(value){
+    const bookmarkIcon = document.getElementById('bookmark'+this.id);
+    if(value){
+      bookmarkIcon.style.fontVariationSettings = "'FILL' 1, 'wght' 700,'GRAD' 0,'opsz' 40"
+    } else {
+      bookmarkIcon.style.fontVariationSettings = "'FILL' 0, 'wght' 100,'GRAD' 100,'opsz' 40"
+    }
+  }
+  async handleBookmarkClick(){
+    const bookmarkState = !this.state.bookmark;
+    console.log(bookmarkState)
+    API_conection.post('/posts/bookmark/', 
+      { id: this.props.post.id, value:bookmarkState})
+    this.setState({ bookmark:bookmarkState})
+    this.updateBookmark(bookmarkState)
   }
 
   async handleLikeClick() {
@@ -195,6 +258,10 @@ class Publication extends React.Component {
 
     this.setState({ like_count:like_count });
   }
+
+  doubleTap(event) {
+    console.log('double tap');
+  }
   render() {
       return(
       <div className='post'>
@@ -214,23 +281,13 @@ class Publication extends React.Component {
               @{this.props.post.username} 
             </span>
           </div>
-          <div className='publication-content'>
+          <div {...this.bind} className='publication-content'>
             <div className='publication-label'>
               {this.props.post.content}
             </div> 
           </div>
         </div>
-        {Object.keys(this.props.post.media).length > 0 &&
-        <div className='publication-media'>
-          <Carousel className='post-Carousel' showThumbs={false} useKeyboardArrows={true}>
-            {Object.keys(this.props.post.media).map((key_) =>
-              <div className="slide">
-                <img alt ="" className="publication-image" src={API_URL +"/image/"+this.props.post.media[key_]} />
-              </div>
-            )}
-          </Carousel>
-        </div>
-      }
+      {GalleryRender(this.props.post.media)}
         <div className='publication-foot prevent-select'>
           <span className='like-button'>
             <Heart inactiveColor={footColor}  isActive={this.state.liked} onClick={() => this.handleLikeClick() }/>
@@ -243,15 +300,27 @@ class Publication extends React.Component {
           </span>
           <span  className="comment-counter">
             {this.props.post.comment_count}
-          </span>
+            </span>
+            <span 
+              id={'bookmark'+this.id}
+              onClick={()=> this.handleBookmarkClick() }
+              class="material-symbols-outlined">
+              bookmark
+            </span>
+
           <span className='date'>
           {this.state.date_of_publication}
           </span>
+
         </div>
+
+
         {this.state.display_comments &&
         <CommentSection
           post_id = {this.props.post.id}
         ></CommentSection>}
+
+
         </div>
       </div>
     )}
@@ -306,16 +375,14 @@ class App extends React.Component {
 
   render() {
       return (
-         <div className="publications-container">
+         <div onScroll={() =>{console.log('scrolll')}} className="publications-container">
             <InfiniteScroll
                dataLength={this.state.items.length}
                next={this.fetchData}
-               loader={<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>}
-               hasMore={this.state.hasMore}
-               // endMessage={}
-               >
+               loader={<div className="lds-ellipsis"><div></div><div></div><div></div><div></div></div>}
+               hasMore={this.state.hasMore}>
                {this.state.items.map((post) => (
-                <article className="post-container">
+                <article key={post.id} className="post-container">
                   <Publication post={post}></Publication>
                 </article>
                ))}
