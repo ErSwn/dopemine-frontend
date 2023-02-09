@@ -3,8 +3,8 @@ import axios from 'axios';
 export const API_URL = 'http://localhost:8000';
 // export const API_URL = 'http://192.168.1.111:8000';
 
-// export const API_URL = '';
-var csrfToken = '';
+// export const API_URL = 'http://54.84.175.98/';
+var csrfToken = 'http://54.84.175.98';
  axios.get(API_URL+'/security/gettoken/', {})
   .then(response =>{
     csrfToken =  response.data['csrftoken']
