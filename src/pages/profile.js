@@ -50,7 +50,7 @@ function Profile({setHeaderTitle, history}){
 
 	useEffect(() => {
 		fecthData()
-	}, [profileName]);
+	}, []);
 
 	return (
          <div className="publications-container">

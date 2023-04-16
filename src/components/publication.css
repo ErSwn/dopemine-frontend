@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Upright&family=Roboto:wght@500&display=swap');
+.publication-foot{
+  width: 100%;
+  float: left;
+  position: relative;
+  /*padding-top: 1px;*/
+}
+#publications{
+  width: 100%;
+}
+
+.post{
+  width:90%;
+  height: 100%;
+  max-width: 560px;
+  background-color: white;
+  display: inline-block;
+  border: 1px solid #cccaca78;
+  align-items: stretch;
+  box-sizing:border-box;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  flex-shrink: 0;
+  font: inherit;
+  font-size: 100%;
+  margin: 0px auto;
+  padding: 0;
+  position: relative;
+  vertical-align: baseline;
+  width: 100%;
+  font-family: 'Cormorant Upright', serif;
+font-family: 'Roboto', sans-serif;
+
+}
+
+.publication-header{
+  display: table;
+  clear: both;
+  padding-top: 5px;
+  background-color: transparent;
+  height: fit-content;
+}
+.user-profile-photo{
+  aspect-ratio: 1 / 1;
+  float: left;
+  margin: 4px;
+  margin-top: 6px;
+  width:9.5%;
+  background-color:transparent;
+}
+.user-profile-photo >img{
+    width:  100%;
+    height: 100%;
+    border-radius: 50%; 
+    object-fit: cover;
+  	border: 1px solid;
+
+  	/*border-color:rgb(179, 179, 179);*/
+}
+.user-name{
+	/*padding-top: 2.4mm;*/
+
+	font: 600 18px/24px Google Sans,-apple-system,BlinkMacSystemFont,sans-serif;
+	font-size: 15px;
+}
+
+.publication-content-container{
+  float: left;
+  width: 83%;
+  padding-left: 2px;
+
+}
+.publication-content{
+  float: left;
+  background-color: white;
+  width:100%;
+  min-height: 10px;
+  color: black;
+
+}
+.publication-label{
+  margin: 0;
+  font-size: 17px;
+  width: 100%;
+  padding-bottom: 5px;
+  font-family: 'Cormorant Upright', serif;
+	font-family: 'Roboto', sans-serif;
+
+}
+
+.publications-container{
+  width:100%;
+  overflow: none;
+  margin: 0;
+  /*border: 2px solid #B1B1B178;*/
+}
+
+.user-username{
+  padding-left: 6px;
+  padding-right: 5px;
+  font-size: 14px;
+  color: rgba(138 ,138, 138);
+}
+
+.publication-image-profile-photo{
+ aspect-ratio:1/1;
+ width:100%;
+ border-radius:50%;
+ background-color:transparent;
+}
+
+.publication-date{
+  float: right;
+  padding-top: 13px;
+  margin-right: 10px;
+  background-color: inherit;
+  color: rgb(150, 150,150);
+  font-size: 15px;
+font-family: 'Cormorant Upright', serif;
+font-family: 'Roboto', sans-serif;
+
+}
+
+.publication-image{
+    width:  100%;
+    height: auto;
+    object-fit: cover;
+}

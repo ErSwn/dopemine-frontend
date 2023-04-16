@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Upright&family=Roboto:wght@500&display=swap');
+
+.navigation-bar{
+	position: fixed;
+	float: right;
+	width:inherit;
+	background-color:#F5F5F5;
+	background-color:white;
+	width:300px;
+
+	color: black;
+	margin-top: 50px;
+	font-weight: 500;
+	min-height: 100%;
+	font-size: 18px;
+}
+.navigation-button{
+	margin-left: 30px;
+	margin-top: 20px;
+	/*cursor: pointer;*/
+	padding:2px;
+	display:flex;
+}
+.navigation-button:hover{
+	margin-left: 35px;
+	transition:0.2s;
+}
+
+.nativation-link{
+	text-decoration: none;
+	color: inherit;
+	box-shadow: none;
+	display:flex;
+	align-items:center;
+}
+.nativation-link:hover{
+	text-decoration: none;
+	color: inherit;
+	box-shadow: none;
+}
+
+.navigation-label{
+	margin-left: 4px;
+	font-family: 'Cormorant Upright', serif;
+	font-family: 'Roboto', sans-serif;
+}
+
+.nav-icon{
+	float:left;
+}
+
+.left-navigation{
+	width:300px;
+	float:right;
+}

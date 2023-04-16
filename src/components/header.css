@@ -1,6 +1,6 @@
 header{
 	background-color:black;
-	position:sticky;
+	position:fixed;
 	top:0;
 	left:0;
 	width:100%;
@@ -11,5 +11,6 @@ header{
 	font-size:17px;
 	padding:10px;
 	text-align:center;
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 	font-family: Helvetica, Sans-Serif;
 }

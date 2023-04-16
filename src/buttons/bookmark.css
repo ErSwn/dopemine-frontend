@@ -1,0 +1,14 @@
+.bookmark-icon{
+  float: left;
+  margin-top: 9px;
+  margin-left: 20px;
+  color: #b7afaf;
+  font-variation-settings:
+  'FILL' 0,
+  'opsz' 40
+}
+
+.bookmark-icon:hover  {
+  transform: scale(1.1, 1.1);
+  cursor: pointer;
+}
